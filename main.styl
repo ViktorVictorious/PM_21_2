@@ -1,0 +1,53 @@
+/*  Простая переменная  */
+  base-font-size = 12px
+
+/* Инициализация переменной с помощью вызова миксина */
+body-background = invert(#ccc)
+
+/* Селектор и набор правил для него */
+body
+  color #333
+  background #fff
+
+/* Вложенность правил */
+nav
+  margin 10px
+    ul
+      list-style-type none
+        > li
+          display inline-block
+          &.current
+            background-color lightblue
+
+/* Использование вычисляемых значений */
+div.column
+  margin-right (grid-spacing / 2)
+  margin-top (grid-spacing * 2)
+
+/* Использование ранее установленного значения */
+div.center-column
+  width 200px
+  margin-left -(@width / 2)
+
+/* Задание значений, полученных как результат вычислений миксинов */
+.promo
+  apply-promo-style()
+  apply-width-center(400px)
+
+/* Итерация в цикле */
+table
+  for row in 1 2 3 4 5
+    tr:nth-child({row})
+      height 10px * row
+
+/* Другой вариант итерации в цикле */
+for row in (1..5)
+  tr:nth-child({row})
+    height 10px * row
+
+/* Импортирование в Stylus-файл другой таблицы стилей в формате Stylus */
+@import "links.styl"
+
+/* extend существующего класса */
+.warning
+  @extend .block
